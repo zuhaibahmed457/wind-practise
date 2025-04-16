@@ -1,0 +1,172 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <title>{{title}}</title>
+    <style>
+      /* Global Reset */
+      body, table, td, a {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+        font-family: "Arial", sans-serif;
+        color: rgba(255, 255, 255, 1); /* White text */
+        line-height: 1.6;
+      }
+      table {
+        border-collapse: collapse !important;
+        width: 100%;
+      }
+      
+      /* Main Email Container */
+      .email-container {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: rgba(24, 24, 27, 1); /* Secondary background */
+        border-radius: 10px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+      }
+      
+      /* Header */
+      .email-header {
+        background-color: rgba(244, 198, 51, 1); /* Primary color */
+        color: rgba(24, 24, 27, 1); /* Dark text */
+        padding: 20px;
+        text-align: center;
+      }
+      .email-header img {
+        width: 180px;
+        height: auto;
+        margin-bottom: 14px;
+      }
+      .email-header h1 {
+        font-size: 20px;
+        margin: 0;
+        font-weight: 600;
+      }
+      
+      /* Body */
+      .email-body {
+        padding: 30px;
+        color: rgba(255, 255, 255, 0.9); /* Body text */
+      }
+      .email-body h2 {
+        color: rgba(244, 198, 51, 1); /* Secondary text */
+        font-size: 22px;
+        margin: 0 0 15px;
+        font-weight: 600;
+      }
+      .email-body p {
+        margin: 15px 0;
+        font-size: 16px;
+      }
+      
+      /* OTP Box */
+      .otp-box {
+        text-align: center;
+        margin: 20px 0;
+      }
+      .otp {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, 0.15); /* Light Grey */
+        color: rgba(244, 198, 51, 1); /* Primary */
+        font-size: 28px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 8px;
+        letter-spacing: 2px;
+      }
+
+      /* Dynamic Button */
+      .button {
+        display: inline-block;
+        text-decoration: none;
+        padding: 12px 25px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        margin-top: 25px;
+      }
+      .button {
+        background-color: rgba(244, 198, 51, 1);
+        color: rgba(24, 24, 27, 1);
+      }
+      .button:hover {
+        background-color: rgba(255, 204, 51, 1);
+      }
+      
+      /* Footer */
+      .email-footer {
+        background-color: rgba(0, 0, 0, 1);
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.55);
+        border-top: 1px solid rgba(174, 174, 174, 1);
+      }
+      .email-footer a {
+        color: rgba(244, 198, 51, 1);
+        text-decoration: none;
+      }
+
+      /* Responsive */
+      @media screen and (max-width: 600px) {
+        .email-container {
+          width: 100% !important;
+        }
+        .email-body, .email-header, .email-footer {
+          padding: 20px;
+        }
+        .otp {
+          font-size: 24px;
+        }
+        .button {
+          font-size: 14px;
+          padding: 10px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <table role="presentation" class="email-container">
+        <!-- Header -->
+        <tr>
+          <td class="email-header">
+            <img src="{{backend_url}}/images/defaults/app-logo.png" alt="{{company_name}} Logo" />
+            <h1>{{title}}</h1>
+          </td>
+        </tr>
+        
+        <!-- Body -->
+        <tr>
+          <td class="email-body">
+            <h2>Hello, {{full_name}}</h2>
+            <p>You have received a new access request.</p>
+            <p><strong>Request Type:</strong> {{request_type}}</p>
+            <p><strong>Requested From:</strong> {{email}}</p>
+            <p>Please review the request and take appropriate action.</p>
+            <p style="text-align: center;">
+              <a href="{{request_url}}" class="button">Review Request</a>
+            </p>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td class="email-footer">
+            &copy; {{year}} {{company_name}}. All rights reserved.
+          </td>
+        </tr>
+      </table>
+    </center>
+  </body>
+</html>

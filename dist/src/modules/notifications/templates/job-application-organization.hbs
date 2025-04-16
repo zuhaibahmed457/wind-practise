@@ -1,0 +1,149 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <title>New Job Application Received</title>
+    <style>
+      body, table, td, a {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+        font-family: "Arial", sans-serif;
+        color: rgba(255, 255, 255, 1);
+        line-height: 1.6;
+      }
+      table {
+        border-collapse: collapse !important;
+        width: 100%;
+      }
+      .email-container {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: rgba(24, 24, 27, 1);
+        border-radius: 10px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+      }
+      .email-header {
+        background-color: rgba(244, 198, 51, 1);
+        color: rgba(24, 24, 27, 1);
+        padding: 20px;
+        text-align: center;
+      }
+      .email-header img {
+        width: 180px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+      .email-header h1 {
+        font-size: 20px;
+        margin: 0;
+        font-weight: 700;
+      }
+      .email-body {
+        padding: 30px;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .email-body h2 {
+        color: rgba(244, 198, 51, 1);
+        font-size: 22px;
+        margin: 0 0 15px;
+        font-weight: 600;
+      }
+      .email-body p {
+        margin: 15px 0;
+        font-size: 16px;
+      }
+      .applicant-details {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+      }
+      .applicant-details h3 {
+        color: rgba(244, 198, 51, 1);
+        margin-bottom: 10px;
+      }
+      .button {
+        display: inline-block;
+        text-decoration: none;
+        padding: 14px 28px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        margin-top: 25px;
+        background-color: rgba(244, 198, 51, 1);
+        color: rgba(24, 24, 27, 1);
+        transition: 0.3s;
+      }
+      .button:hover {
+        background-color: rgba(255, 204, 51, 1);
+      }
+      .email-footer {
+        background-color: rgba(0, 0, 0, 1);
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.55);
+        border-top: 1px solid rgba(174, 174, 174, 1);
+      }
+      .email-footer a {
+        color: rgba(244, 198, 51, 1);
+        text-decoration: none;
+      }
+      @media screen and (max-width: 600px) {
+        .email-container {
+          width: 100% !important;
+        }
+        .email-body, .email-header, .email-footer {
+          padding: 20px;
+        }
+        .button {
+          font-size: 14px;
+          padding: 10px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <table role="presentation" class="email-container">
+        <tr>
+          <td class="email-header">
+            <img src="{{backend_url}}/images/defaults/app-logo.png" alt="{{company_name}} Logo" />
+            <h1>New Job Application Received</h1>
+          </td>
+        </tr>
+        <tr>
+          <td class="email-body">
+            <h2>Hello, {{organization_name}}</h2>
+            <p>You have received a new job application for the position of <strong>{{job_title}}</strong>.</p>
+            
+            <div class="applicant-details">
+              <h3>Applicant Details</h3>
+              <p><strong>Name:</strong> {{technician_name}}</p>
+              <p><strong>Email:</strong> {{technician_email}}</p>
+              <p><strong>Application Date:</strong> {{application_date}}</p>
+            </div>
+
+            <p>Review this application and take necessary action through your dashboard.</p>
+
+            <a href="{{dashboard_link}}" class="button">Review Application</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="email-footer">
+            &copy; {{year}} {{company_name}}. All rights reserved.
+          </td>
+        </tr>
+      </table>
+    </center>
+  </body>
+</html> 

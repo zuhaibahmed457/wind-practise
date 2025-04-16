@@ -1,0 +1,30 @@
+import { CreateAccessRequestDto } from './dto/create-access-request.dto';
+import { User } from '../users/entities/user.entity';
+import { AccessRequest } from './entities/access-request.entity';
+import { Repository } from 'typeorm';
+import { ProfileDetails } from '../profile-details/entities/profile-details.entity';
+import { GetAllAccessRequestDto } from './dto/get-all-access-request.dto';
+import { ParamIdDto } from 'src/shared/dtos/paramId.dto';
+import { ManageAccessRequestDto } from './dto/manage-access-request.dto';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { ConfigService } from '@nestjs/config';
+import { Portfolio } from '../portfolio/entities/portfolio.entity';
+import { Certificate } from '../certificates/entities/certificate.entity';
+import { ViewAccessRequestDto } from './dto/view-access-request.dto';
+import { EmailNotificationService } from '../notifications/services/email-notification.service';
+export declare class AccessRequestService {
+    private readonly accessRequestRepo;
+    private readonly profileDetailsRepo;
+    private readonly portfolioRepo;
+    private readonly certificateRepo;
+    private readonly eventEmitter;
+    private readonly configService;
+    private readonly emailNotificationService;
+    constructor(accessRequestRepo: Repository<AccessRequest>, profileDetailsRepo: Repository<ProfileDetails>, portfolioRepo: Repository<Portfolio>, certificateRepo: Repository<Certificate>, eventEmitter: EventEmitter2, configService: ConfigService, emailNotificationService: EmailNotificationService);
+    create(createAccessRequestDto: CreateAccessRequestDto): Promise<AccessRequest>;
+    viewAccessRequest(viewAccessRequestDto: ViewAccessRequestDto): Promise<AccessRequest>;
+    findAll(getAllAccessRequestDto: GetAllAccessRequestDto, currentUser: User): Promise<import("nestjs-typeorm-paginate").Pagination<AccessRequest, import("nestjs-typeorm-paginate").IPaginationMeta>>;
+    findOne({ id }: ParamIdDto, currentUser: User): Promise<AccessRequest>;
+    manageStatus({ id }: ParamIdDto, currentUser: User, manageAccessRequestDto: ManageAccessRequestDto): Promise<AccessRequest>;
+    remove({ id }: ParamIdDto, currentUser: User): Promise<void>;
+}

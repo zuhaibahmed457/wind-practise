@@ -1,0 +1,34 @@
+import { Designation } from 'src/modules/designation/entities/designation.entity';
+import { EmploymentType } from 'src/modules/employment-type/entities/employment-type.entity';
+import { BaseEntity } from 'typeorm';
+import { Skill } from 'src/modules/skills/entities/skill.entity';
+import { Education } from 'src/modules/education/entities/education.entity';
+import { User } from 'src/modules/users/entities/user.entity';
+import { Portfolio } from 'src/modules/portfolio/entities/portfolio.entity';
+import { JobApplicant } from 'src/modules/job_applicant/entities/job_applicant.entity';
+import { AccessRequest } from 'src/modules/access-request/entities/access-request.entity';
+export declare class ProfileDetails extends BaseEntity {
+    id: string;
+    country: string;
+    city: string;
+    address: string;
+    tagline: string;
+    about: string;
+    join_date: Date;
+    linkedin_url: string;
+    facebook_url: string;
+    twitter_url: string;
+    website_url: string;
+    soonest_expiring_certificate_date: Date;
+    created_at: Date;
+    updated_at: Date;
+    deleted_at: Date;
+    designation: Designation;
+    employment_type: EmploymentType;
+    educations: Education[];
+    skills: Skill[];
+    portfolio: Portfolio[];
+    job_applicants: JobApplicant[];
+    access_requests: AccessRequest[];
+    user: User;
+}
