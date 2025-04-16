@@ -1,0 +1,13 @@
+import { ProfileDetails } from 'src/modules/profile-details/entities/profile-details.entity';
+import { BaseEntity } from 'typeorm';
+export declare class Portfolio extends BaseEntity {
+    id: string;
+    project_name: string;
+    industry: string;
+    project_duration: number;
+    description: string;
+    created_at: Date;
+    updated_at: Date;
+    deleted_at: Date;
+    profile_details: ProfileDetails;
+}

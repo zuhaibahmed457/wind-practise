@@ -1,0 +1,123 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta name='x-apple-disable-message-reformatting' />
+    <title>{{title}}</title>
+    <style>
+      /* Global Reset */ body, table, td, a { -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%; text-size-adjust: 100%; margin: 0; padding: 0;
+      } body { width: 100%; height: 100%; font-family: "Arial", sans-serif;
+      color: rgba(255, 255, 255, 1); /* White text */ line-height: 1.6; } table
+      { border-collapse: collapse !important; width: 100%; } /* Main Email
+      Container */ .email-container { max-width: 640px; margin: 40px auto;
+      background-color: rgba(24, 24, 27, 1); /* Secondary Background */
+      border-radius: 10px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5); overflow:
+      hidden; } /* Header */ .email-header { background-color: rgba(244, 198,
+      51, 1); /* Primary color */ color: rgba(24, 24, 27, 1); /* Dark text */
+      padding: 20px; text-align: center; } .email-header img { width: 180px;
+      height: auto; margin-bottom: 14px; } .email-header h1 { font-size: 20px;
+      margin: 0; font-weight: 600; } /* Body */ .email-body { padding: 30px;
+      color: rgba(255, 255, 255, 0.9); /* Body text */ } .email-body h2 { color:
+      rgba(244, 198, 51, 1); /* Secondary text */ font-size: 22px; margin: 0 0
+      15px; font-weight: 600; } .email-body p { margin: 15px 0; font-size: 16px;
+      } /* Dynamic Alert Box */ .alert-box { padding: 15px; text-align: center;
+      border-radius: 8px; font-size: 18px; font-weight: bold; margin: 20px 0; }
+      .warning { background-color: rgba(244, 198, 51, 0.3); /* Light Primary */
+      color: rgba(244, 198, 51, 1); } .expired { background-color: rgba(255,
+      255, 255, 0.15); /* Light grey */ color: rgba(255, 255, 255, 0.9); } /*
+      Expiry Date */ .expiry-date { font-size: 24px; font-weight: bold; }
+      .warning .expiry-date { color: rgba(244, 198, 51, 1); } .expired
+      .expiry-date { color: rgba(255, 255, 255, 0.9); } /* Dynamic Button */
+      .button { display: inline-block; text-decoration: none; padding: 12px
+      25px; font-size: 16px; font-weight: bold; border-radius: 6px; margin-top:
+      25px; } .warning .button { background-color: rgba(244, 198, 51, 1); color:
+      rgba(24, 24, 27, 1); } .warning .button:hover { background-color:
+      rgba(255, 204, 51, 1); } .expired .button { background-color: rgba(255,
+      255, 255, 0.15); color: rgba(255, 255, 255, 0.9); } .expired .button:hover
+      { background-color: rgba(255, 255, 255, 0.3); } /* Footer */ .email-footer
+      { background-color: rgba(0, 0, 0, 1); text-align: center; padding: 20px;
+      font-size: 14px; color: rgba(255, 255, 255, 0.55); border-top: 1px solid
+      rgba(174, 174, 174, 1); } .email-footer a { color: rgba(244, 198, 51, 1);
+      text-decoration: none; } /* Responsive */ @media screen and (max-width:
+      600px) { .email-container { width: 100% !important; } .email-body,
+      .email-header, .email-footer { padding: 20px; } .expiry-date { font-size:
+      20px; } .button { font-size: 14px; padding: 10px 20px; } }
+    </style>
+  </head>
+  <body>
+    <center>
+      <table role='presentation' class='email-container'>
+        <!-- Header -->
+        <tr>
+          <td class='email-header'>
+            <img
+              src='{{backend_url}}/images/defaults/app-logo.png'
+              alt='{{company_name}} Logo'
+            />
+            <h1>{{title}}</h1>
+          </td>
+        </tr>
+
+        <!-- Body -->
+        <tr>
+          <td class='email-body'>
+            <h2>Hello, {{name}}</h2>
+            <p>Your certificate
+              <strong>{{certificate_name}}</strong>
+              {{#if (eq status 'warning')}} is about to expire.{{/if}}
+              {{#if (eq status 'expired')}} has expired.{{/if}}</p>
+
+            <div class='alert-box {{status}}'>
+              ⚠️ Your certificate
+              {{#if (eq status 'warning')}}
+                will expire in
+                {{days_remaining}}
+                days on
+                {{expiry_date}}.{{/if}}
+              {{#if (eq status 'expired')}}
+                expired on
+                <span class='expiry-date'>{{expiry_date}}</span>.{{/if}}
+            </div>
+
+            <p>
+              {{#if (eq status 'warning')}}
+                Please check the certificate by clicking the button below.
+              {{/if}}
+              {{#if (eq status 'expired')}}
+                Immediate action is required to restore service.
+              {{/if}}
+            </p>
+
+            <p style='text-align: center;'>
+              <a href='{{renew_url}}' class='button {{status}}'>
+                {{#if (eq status 'warning')}} Update Now {{/if}}
+                {{#if (eq status 'expired')}} Reactivate Now {{/if}}
+              </a>
+            </p>
+
+            <p>
+              {{#if (eq status 'warning')}}
+                If you have already updated your certificate, please ignore this
+                message.
+              {{/if}}
+              {{#if (eq status 'expired')}}
+                If you have already reactivated your certificate, please ignore
+                this email.
+              {{/if}}
+            </p>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td class='email-footer'>
+            &copy;
+            {{year}}
+            {{company_name}}. All rights reserved.
+          </td>
+        </tr>
+      </table>
+    </center>
+  </body>
+</html>

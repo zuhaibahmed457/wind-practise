@@ -1,0 +1,30 @@
+import { ApplyJobApplicantDto } from './dto/apply-job_applicant.dto';
+import { User } from '../users/entities/user.entity';
+import { JobPost } from '../job-post/entities/job-post.entity';
+import { Repository } from 'typeorm';
+import { JobApplicant } from './entities/job_applicant.entity';
+import { GetAllApplyJobDto } from './dto/get-all-apply-job.dto';
+import { ParamIdDto } from 'src/shared/dtos/paramId.dto';
+import { GetAllApplicantsDto } from './dto/get-all-applicants.dto';
+import { ManageJobApplicantStatusDto } from './dto/manage-job-applicant-status.dto';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { ConfigService } from '@nestjs/config';
+import { AccessRequest } from '../access-request/entities/access-request.entity';
+import { ProfileDetails } from '../profile-details/entities/profile-details.entity';
+export declare class JobApplicantService {
+    private readonly jobApplicantRepo;
+    private readonly jobPostRepo;
+    private readonly accessRequestRepo;
+    private readonly eventEmitter;
+    private readonly configService;
+    constructor(jobApplicantRepo: Repository<JobApplicant>, jobPostRepo: Repository<JobPost>, accessRequestRepo: Repository<AccessRequest>, eventEmitter: EventEmitter2, configService: ConfigService);
+    applyJob(applyJobApplicantDto: ApplyJobApplicantDto, currentUser: User): Promise<JobApplicant>;
+    getAllAppliedJobs(getAllApplyJobDto: GetAllApplyJobDto, currentUser: User): Promise<import("nestjs-typeorm-paginate").Pagination<JobApplicant, import("nestjs-typeorm-paginate").IPaginationMeta>>;
+    getAppliedJob({ id }: ParamIdDto, currentUser: User): Promise<JobApplicant>;
+    findAll(getAllApplicantsDto: GetAllApplicantsDto, currentUser: User): Promise<import("nestjs-typeorm-paginate").Pagination<JobApplicant, import("nestjs-typeorm-paginate").IPaginationMeta>>;
+    findOne({ id }: ParamIdDto, currentUser: User): Promise<JobApplicant>;
+    manageStatus({ id }: ParamIdDto, manageJobApplicantStatusDto: ManageJobApplicantStatusDto, currentUser: User): Promise<JobApplicant>;
+    private autoGrantAccess;
+    createAccessRequest(requested_from: string, requested_by: ProfileDetails): Promise<void>;
+    private sendJobApplicationNotifications;
+}
